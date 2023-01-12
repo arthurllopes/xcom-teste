@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import { Inter } from '@next/font/google'
 import Header from '../components/header'
+import { Grid, Stack } from '@mui/material'
+import BestSellers from '../components/bestSellers'
+import ProductsList from '../components/productsList'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,7 +18,14 @@ export default function Home() {
       </Head>
       <Header />
       <main>
-        
+        <Grid container columns={{ xs: 2, md: 6 }} px='50px' py='80px' spacing={4}>
+          <Grid item xs={2}>
+            <BestSellers />
+          </Grid>
+          <Grid item xs={4}>
+            <ProductsList />
+          </Grid>
+        </Grid>
       </main>
     </>
   )
