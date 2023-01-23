@@ -8,9 +8,8 @@ type Props = {
   currentPage: number
 }
 const ProductsDataTable = ({itemsPerPage, currentPage} :Props) => {
-
   const {productsData} = useOrders()
-  const dataPerPage = (productsData as ProductType[])?.length > 1 ? productsData?.slice((currentPage * itemsPerPage), (currentPage + 1) * itemsPerPage) : []
+  const dataPerPage = (productsData as ProductType[])?.length >= 1 ? productsData?.slice((currentPage * itemsPerPage), (currentPage + 1) * itemsPerPage) : []
 
   return (
     <div style={{backgroundColor: '#F3F5F9', padding: '24px 30px', borderRadius: '8px', width: '100%'}}>
@@ -29,11 +28,11 @@ const ProductsDataTable = ({itemsPerPage, currentPage} :Props) => {
           {dataPerPage?.map(item => (
             <TableItem item={item} key={item.id}/>
           ))}
-          {(productsData as ProductType[])?.length < 1 && 
-          <Typography typography='description' >
-            Sem itens no momento.
-          </Typography>}
         </tbody>
+        {(productsData as ProductType[])?.length < 1 && 
+        <Typography typography='description' >
+          Sem itens no momento.
+        </Typography>}
       </table>
     </div>
   )

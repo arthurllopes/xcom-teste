@@ -47,9 +47,9 @@ export default createServer({
             this.schema.all('product')
         ))
 
-        this.get("/all/:search", (schema: any, request: any) => {
-            const search = request.params.search
-           return schema.products.where({ description: search });
+        this.get("/all/:search", (schema: any, request: any): RouteHandler<Registry<AnyModels, AnyFactories>, AnyResponse> => {
+            let search = request.params.search
+            return schema.products.where({ description: search });
         })
 
         this.post("/new-product", (schema: any, request: any): RouteHandler<Registry<AnyModels, AnyFactories>, AnyResponse> => {
