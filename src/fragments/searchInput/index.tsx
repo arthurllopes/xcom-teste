@@ -1,11 +1,36 @@
 import { Input, InputAdornment, TextField } from '@mui/material'
-import React from 'react'
+import React, { ChangeEvent } from 'react'
+import { useOrders } from '../../context/useOrders'
+import api from '../../services/api'
 
 const SearchInput = () => {
+    const {setProductsData} = useOrders()
+    const timeoutRef: any = React.useRef()
+
+    const getSearchedProduct = async (searchValue: string) => {
+        try {
+            const response = await api.get(`/all/${searchValue}`)
+            const { data, status} = response
+            if (status !== 200) throw new Error()
+            setProductsData(data.products)
+        } catch (error) {
+            setProductsData(null)
+        }
+    }
+
+    function handleSearch (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>){
+
+        clearTimeout(timeoutRef.current)
+
+        timeoutRef.current = setTimeout(() => {
+            getSearchedProduct(e.target.value)
+        }, 1000)
+    }
   return (
       <TextField
         id="input-with-icon-textfield"
         placeholder='Buscar por produtos'
+        onChange={(e) => handleSearch(e)}
         InputProps={{
             startAdornment: (
                 <InputAdornment position="start" sx={{marginRight: '20px'}}>
@@ -20,7 +45,7 @@ const SearchInput = () => {
             //padding: '16px 22px',
             borderRadius: '8px',
         }}
-  />
+    />
   )
 }
 

@@ -1,11 +1,10 @@
 import Head from 'next/head'
 import { Inter } from '@next/font/google'
 import Header from '../components/header'
-import { Grid, Stack } from '@mui/material'
+import { Alert, AlertColor, Grid, Snackbar, Stack } from '@mui/material'
 import BestSellers from '../components/bestSellers'
 import ProductsList from '../components/productsList'
-
-const inter = Inter({ subsets: ['latin'] })
+import CreateProductModal from '../components/createProductModal'
 
 export default function Home() {
   return (
@@ -18,15 +17,16 @@ export default function Home() {
       </Head>
       <Header />
       <main>
-        <Grid container columns={{ xs: 2, md: 6 }} px='50px' py='80px' spacing={4}>
-          <Grid item xs={2}>
+        <Grid container columns={{ xs: 2, md: 8 }} px='50px' py='80px' spacing={4}>
+          <Grid item xs={3}>
             <BestSellers />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={5}>
             <ProductsList />
           </Grid>
         </Grid>
-      </main>
+      </main> 
+      <CreateProductModal />
     </>
   )
 }

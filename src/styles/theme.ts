@@ -14,7 +14,7 @@ export const theme = createTheme({
         }
     },
     typography: {
-      fontFamily: "Inter",
+      fontFamily: 'Inter', 
       fontWeightRegular: 400,
       fontWeightMedium: 600,
       fontWeightBold: 800,
@@ -26,7 +26,7 @@ export const theme = createTheme({
         fontWeight: 700,
       },
   
-      paragraph: {
+      subtitle: {
         fontSize: "1.5rem",
         lineHeight: "125%",
         fontWeight: 600,
@@ -73,13 +73,13 @@ declare module '@mui/material/styles' {
   }
   interface TypographyVariants {
     title: React.CSSProperties;
-    paragraph: React.CSSProperties;
+    subtitle: React.CSSProperties;
     description: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
     title?: React.CSSProperties;
-    paragraph?: React.CSSProperties;
+    subtitle?: React.CSSProperties;
     description?: React.CSSProperties;
     
   }
